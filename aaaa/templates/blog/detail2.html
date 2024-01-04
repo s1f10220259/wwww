@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Django Sample Application</h1>
+<h2>Title: {{ article.title }}</h2>
+<small>Posted at: {{ article.posted_at }}</small>
+<div>
+  {{ article.body | linebreaksbr }}
+</div>
+<hr>
+
+
+<h3>Comments</h3>
+{% for comment in comments %}
+    <p>{{ comment.author.get_full_name  }}さんのコメント: {{ comment.text }}</p>
+{% empty %}
+    <p>コメントはありません。</p>
+{% endfor %}
+<hr>
+
+{% if user.is_authenticated %}
+<p>
+    <h3>コメントを追加する</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">投稿</button>
+    </form>
+</p>
+<a href="{% url 'aaaa:update' article.id %}">EDIT</a>
+<a href="{% url 'aaaa:delete' article.id %}">DELETE</a>
+{% endif %}
+<a href="{% url 'aaaa:index2' %}">Top</a>
+
+{% endblock %}

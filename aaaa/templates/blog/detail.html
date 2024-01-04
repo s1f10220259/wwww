@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detail</title>
+    <meta charset="UTF-8"></head>
+  <body>
+    <h1>Django Sample Application</h1>
+    <h2>Title: {{ article.title }}</h2>
+    <small>Posted at:{{ article.posted_at }}</small>
+    <div>
+      {{ article.body | linebreaksbr }}
+    </div>
+    <hr>
+    {% if user.is_authenticated %}
+    <p>
+        <a href="{%  url 'aaaa:update' article.id %}">EDIT</a>
+        <a href="{%  url 'aaaa:delete' article.id %}">DELITE</a>
+    </p>
+    {% endif %}
+    <a href="{% url 'aaaa:index2' %}">Top</a>
+
+  </body>
+</html>
